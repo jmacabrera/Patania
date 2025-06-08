@@ -111,6 +111,7 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
+//PAGINA DE CONSEJOS
 class ConsejosScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -197,7 +198,7 @@ class ConsejosScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Icon(Icons.home, color: Colors.white),
-                  Icon(Icons.bone, color: Colors.white), // Necesitarías un ícono personalizado
+                  Icon(Icons.pets, color: Colors.white), // Necesitarías un ícono personalizado
                   Icon(Icons.emoji_events, color: Colors.white),
                 ],
               ),
