@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-void main() => runApp(PataniaApp());
 
-class PataniaApp extends StatelessWidget {
+void main() => runApp(patania_app());
+
+class patania_app extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
