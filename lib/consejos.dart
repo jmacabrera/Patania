@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patania_app/home_pr.dart';
 
 class Consejos extends StatefulWidget {
   const Consejos({super.key});
@@ -23,7 +24,16 @@ class _ConsejosState extends State<Consejos> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _navTab('Home'),
+                  //_navTab('Home'),
+                  //Text('Home'),
+                      TextButton(
+                        child: Text('Home'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeScreen()));
+                    },
+                    ),
                   _navTab('Rutinas'),
                   _navTab('Consejos', isSelected: true),
                   _navTab('Servicios'),

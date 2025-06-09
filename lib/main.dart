@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patania_app/registro_form.dart';
 import 'package:patania_app/home_pr.dart';
-import 'package:patania_app/consejos.dart';
+
 
 void main() => runApp(PataniaApp());
 
@@ -86,8 +86,12 @@ class LoginScreen extends StatelessWidget {
                 children: [
                   Text('¿No tienes cuenta?'),
                   TextButton(
-                    onPressed: () {},
                     child: Text('Crea tu cuenta'),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => RegisterFormScreen()));
+                    },
                   ),
                 ],
               ),

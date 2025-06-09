@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:patania_app/consejos.dart';
 
 
 class HomeScreen extends StatefulWidget {
@@ -139,7 +140,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       _buildNavTab('Home', 0),
                       _buildNavTab('Rutinas', 1),
-                      _buildNavTab('Consejos', 2),
+                      //_buildNavTab('Consejos', 2),
+                      //Text('Consejos'),
+                      TextButton(
+                        child: Text('Consejos'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Consejos()));
+                    },
+                  ),
                       _buildNavTab('Servicios', 3),
                     ],
                   ),
@@ -292,6 +302,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.white, size: 30), // Icono Home
               onPressed: () {
                 // Lógica de navegación o estado
+                Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeScreen()));
                 debugPrint('Navegar a Home');
               },
             ),
