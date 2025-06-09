@@ -104,6 +104,12 @@ class _ConsejosState extends State<Consejos> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, 'HomeScreen');
+                      },
+                      child: Icon(Icons.home, color: Colors.white),
+                  ),
                   Icon(Icons.home, color: Colors.white),
                   Icon(Icons.pets,
                       color:
