@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:patania_app/registro_form.dart';
+import 'package:patania_app/home_pr.dart';
 
 void main() => runApp(patania_app());
 
@@ -7,7 +8,7 @@ class patania_app extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: LoginScreen(),
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
@@ -45,7 +46,8 @@ class LoginScreen extends StatelessWidget {
                   hintText: 'Email',
                   filled: true,
                   fillColor: Colors.white,
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
                 ),
               ),
               SizedBox(height: 16),
@@ -55,7 +57,8 @@ class LoginScreen extends StatelessWidget {
                   hintText: 'Contraseña',
                   filled: true,
                   fillColor: Colors.white,
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(8)),
                 ),
               ),
               SizedBox(height: 8),
@@ -63,7 +66,8 @@ class LoginScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: TextButton(
                   onPressed: () {},
-                  child: Text('¿Olvidaste contraseña?', style: TextStyle(fontSize: 12)),
+                  child: Text('¿Olvidaste contraseña?',
+                      style: TextStyle(fontSize: 12)),
                 ),
               ),
               SizedBox(height: 8),
@@ -149,7 +153,8 @@ class ConsejosScreen extends StatelessWidget {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Tommy', style: TextStyle(fontWeight: FontWeight.bold)),
+                      Text('Tommy',
+                          style: TextStyle(fontWeight: FontWeight.bold)),
                       Text('Golden retriever'),
                       Text('8 kg   ·   2 años'),
                     ],
@@ -198,7 +203,9 @@ class ConsejosScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Icon(Icons.home, color: Colors.white),
-                  Icon(Icons.pets, color: Colors.white), // Necesitarías un ícono personalizado
+                  Icon(Icons.pets,
+                      color:
+                          Colors.white), // Necesitarías un ícono personalizado
                   Icon(Icons.emoji_events, color: Colors.white),
                 ],
               ),
@@ -216,7 +223,8 @@ class ConsejosScreen extends StatelessWidget {
           label,
           style: TextStyle(
             fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-            decoration: isSelected ? TextDecoration.underline : TextDecoration.none,
+            decoration:
+                isSelected ? TextDecoration.underline : TextDecoration.none,
           ),
         ),
       ],
@@ -250,12 +258,10 @@ class ConsejosScreen extends StatelessWidget {
                 ],
               ),
             ),
-            if (hasFavorite)
-              Icon(Icons.favorite_border),
+            if (hasFavorite) Icon(Icons.favorite_border),
           ],
         ),
       ),
     );
   }
 }
-
