@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patania_app/registro_form.dart';
 import 'package:patania_app/home_pr.dart';
+import 'package:patania_app/servicios_screen.dart';
 
 void main() => runApp(patania_app());
 
@@ -8,7 +9,7 @@ class patania_app extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: HomeScreen(),
+      home: ServiciosScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
