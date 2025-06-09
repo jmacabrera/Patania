@@ -1,21 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:patania_app/registro_form.dart';
 import 'package:patania_app/home_pr.dart';
 
-void main() => runApp(patania_app());
+class Consejos extends StatefulWidget {
+  const Consejos({super.key});
 
-class patania_app extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
+  State<Consejos> createState() => _ConsejosState();
 }
 
 //PAGINA DE CONSEJOS
-class ConsejosScreen extends StatelessWidget {
+class _ConsejosState extends State<Consejos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +24,16 @@ class ConsejosScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  _navTab('Home'),
+                  //_navTab('Home'),
+                  //Text('Home'),
+                      TextButton(
+                        child: Text('Home'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeScreen()));
+                    },
+                    ),
                   _navTab('Rutinas'),
                   _navTab('Consejos', isSelected: true),
                   _navTab('Servicios'),
@@ -101,6 +104,12 @@ class ConsejosScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushReplacementNamed(context, 'HomeScreen');
+                      },
+                      child: Icon(Icons.home, color: Colors.white),
+                  ),
                   Icon(Icons.home, color: Colors.white),
                   Icon(Icons.pets,
                       color:

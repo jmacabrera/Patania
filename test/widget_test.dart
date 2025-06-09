@@ -5,7 +5,7 @@ import 'package:patania_app/main.dart';
 void main() {
   testWidgets('Renderiza correctamente la pantalla de login', (WidgetTester tester) async {
     // Renderiza la app
-    await tester.pumpWidget(patania_app());
+    await tester.pumpWidget(PataniaApp());
 
     // Verifica que el título esté presente
     expect(find.text('Patania'), findsOneWidget);
