@@ -1,21 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:patania_app/registro_form.dart';
-import 'package:patania_app/home_pr.dart';
 
-void main() => runApp(patania_app());
+class Consejos extends StatefulWidget {
+  const Consejos({super.key});
 
-class patania_app extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomeScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
+  State<Consejos> createState() => _ConsejosState();
 }
 
 //PAGINA DE CONSEJOS
-class ConsejosScreen extends StatelessWidget {
+class _ConsejosState extends State<Consejos> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

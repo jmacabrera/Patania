@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:patania_app/registro_form.dart';
 import 'package:patania_app/home_pr.dart';
+import 'package:patania_app/consejos.dart';
 
-void main() => runApp(patania_app());
+void main() => runApp(Patania_app());
 
-class patania_app extends StatelessWidget {
+class Patania_app extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
