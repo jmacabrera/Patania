@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Definición de la pantalla principal (Home) como un StatefulWidget
-// porque contendrá estado (ej. la selección de la pestaña superior)
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -10,20 +9,19 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  // Índice para controlar la pestaña seleccionada en la navegación superior
+  
   int _selectedTabIndex =
       0; // 0 para Home, 1 para Rutinas, 2 para Consejos, 3 para Servicios
 
-  // Función para construir cada pestaña de navegación superior
+
   Widget _buildNavTab(String label, int index) {
-    // GestureDetector para hacer que el texto sea clickeable
+ 
     return GestureDetector(
       onTap: () {
         setState(() {
           _selectedTabIndex =
               index; // Actualiza el índice de la pestaña seleccionada
-          // Aquí puedes añadir lógica para cambiar el contenido de la pantalla
-          // basado en la pestaña seleccionada, o navegar a otras pantallas.
+        
           debugPrint('Pestaña seleccionada: $label');
         });
       },
@@ -35,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
               fontWeight: _selectedTabIndex == index
                   ? FontWeight.bold
                   : FontWeight.normal,
-              // Eliminado el subrayado del texto de la pestaña seleccionada
+              
               decoration: TextDecoration.none, // Siempre sin subrayado
               color: Colors.black, // El texto de las pestañas es negro
             ),
@@ -46,23 +44,23 @@ class _HomeScreenState extends State<HomeScreen> {
           //     margin: const EdgeInsets.only(top: 4),
           //     height: 2,
           //     width: 30,
-          //     color: Colors.black, // Indicador debajo de la pestaña seleccionada
+          //     color: Colors.black, 
           //   ),
         ],
       ),
     );
   }
 
-  // Función para construir un icono de rutina
+  
   Widget _buildRoutineIcon(IconData icon, String label) {
     return Column(
       children: [
         Container(
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.white, // Fondo blanco para los iconos de rutina
+            color: Colors.white, 
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: Colors.grey[300]!), // Borde sutil
+            border: Border.all(color: Colors.grey[300]!), 
           ),
           child: Icon(icon,
               size: 40,
@@ -70,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(height: 8),
         Text(label,
-            style: const TextStyle(color: Colors.black)), // Texto del icono
+            style: const TextStyle(color: Colors.black)), 
       ],
     );
   }
@@ -95,11 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 Text(title,
                     style: const TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 16)), // Título del recordatorio
+                        fontSize: 16)), 
                 const SizedBox(height: 4),
                 Text(date,
                     style: const TextStyle(
-                        color: Colors.grey)), // Fecha del recordatorio
+                        color: Colors.grey)), 
               ],
             ),
           ],
@@ -111,21 +109,21 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // El fondo de la pantalla Home es un color claro
+    
       backgroundColor:
           const Color(0xFFF3EAEA), // Color de fondo claro como en la imagen
       body: SafeArea(
-        // Asegura que el contenido no invada la barra de estado superior
+       
         child: Column(
           children: [
-            // Sección superior (Título "Patania" y navegación de pestañas)
+            
             Container(
               color: const Color(0xFFF3EAEA), // Fondo de esta sección
               padding:
                   const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
               child: Column(
                 children: [
-                  // Título principal de la aplicación
+            
                   const Text(
                     'Patania',
                     style: TextStyle(
@@ -135,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const SizedBox(height: 20.0),
-                  // Navegación de pestañas (Home, Rutinas, Consejos, Servicios)
+                 
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -148,7 +146,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            // La imagen del diseño tiene un espacio vertical
+           
             const SizedBox(height: 16.0),
 
             // *******************************************************************
@@ -176,11 +174,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                 radius: 35,
                                 // backgroundImage: AssetImage('assets/tommy_dog.png'), // Asume que tienes esta imagen en 'assets/'
                                 backgroundColor: Colors
-                                    .grey, // Placeholder si no tienes la imagen
+                                    .grey, 
                                 child: Icon(Icons.pets,
                                     size: 35,
                                     color:
-                                        Colors.white), // Icono de placeholder
+                                        Colors.white), 
                               ),
                               const SizedBox(width: 16),
                               Column(
