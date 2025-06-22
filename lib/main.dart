@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:patania_app/registro_form.dart';
 import 'package:patania_app/servicios_screen.dart';
+import 'package:patania_app/trofeos_actividad.dart';
+import 'package:patania_app/trofeos_alimentacion.dart';
 
 
 void main() {
@@ -16,7 +18,7 @@ class PataniaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: ServiciosScreen(),
+      home: HomeScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
