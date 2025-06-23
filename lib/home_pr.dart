@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:patania_app/consejos.dart';
+import 'package:patania_app/servicios_screen.dart';
+import 'package:patania_app/trofeos_actividad.dart';
+import 'package:patania_app/trofeos_alimentacion.dart';
+
 
 
 class HomeScreen extends StatefulWidget {
@@ -150,7 +154,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             MaterialPageRoute(builder: (context) => Consejos()));
                     },
                   ),
-                      _buildNavTab('Servicios', 3),
+                     TextButton(
+                        child: Text('Servicios'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ServiciosScreen()));
+                    },
+                  ),
                     ],
                   ),
                 ],
@@ -317,11 +328,13 @@ class _HomeScreenState extends State<HomeScreen> {
               },
             ),
             IconButton(
-              icon: const Icon(Icons.emoji_events,
-                  color: Colors.white, size: 30), // Icono de premios/logros
-              onPressed: () {
-                debugPrint('Navegar a Logros');
-              },
+        icon: const Icon(Icons.emoji_events,
+            color: Colors.white, size: 30), // Icono de premios/logros
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => TrofeosActividadScreen()));
+        },
             ),
           ],
         ),

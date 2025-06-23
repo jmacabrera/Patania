@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
+import 'package:patania_app/home_pr.dart';
+import 'package:patania_app/trofeos_actividad.dart';
+import 'package:patania_app/consejos.dart';
+import 'package:patania_app/servicios_screen.dart';
 
 class TrofeosAlimentacionScreen extends StatelessWidget {
   const TrofeosAlimentacionScreen({super.key});
@@ -68,11 +73,35 @@ class TrofeosAlimentacionScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildNavTab('Home'),
+                      TextButton(
+                      child: const Text('Home'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      },
+                    ),
                       _buildNavTab('Rutinas'),
-                      _buildNavTab('Consejos'),
-                      _buildNavTab('Servicios'),
-                      _buildNavTab('Trofeos'),
+                      TextButton(
+                      child: const Text('Consejos'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Consejos()),
+                        );
+                      },
+                    ),
+                      TextButton(
+                      child: const Text('Servicios'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ServiciosScreen()),
+                        );
+                      },
+                    ),
+                      // _buildNavTab('Trofeos'),
                     ],
                   ),
                 ],
@@ -182,6 +211,43 @@ class TrofeosAlimentacionScreen extends StatelessWidget {
           ],
         ),
       ),
+bottomNavigationBar: Container(
+        color: Colors.black87,
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, color: Colors.white, size: 30),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.pets, color: Colors.white, size: 30),
+              onPressed: () {
+                // Aquí puedes navegar a la pantalla de rutinas o perfil si la tienes
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => RutinasScreen()));
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.emoji_events, color: Colors.white, size: 30),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => TrofeosActividadScreen()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+
+
+
     );
   }
 }

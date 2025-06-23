@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:patania_app/home_pr.dart';
+import 'package:flutter/material.dart';
+import 'package:patania_app/home_pr.dart';
+import 'package:patania_app/consejos.dart';
+import 'package:patania_app/servicios_screen.dart';
+import 'package:patania_app/trofeos_alimentacion.dart';
+
+
 
 class TrofeosActividadScreen extends StatelessWidget {
   const TrofeosActividadScreen({super.key});
@@ -69,11 +77,35 @@ class TrofeosActividadScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildNavTab('Home'),
+                     TextButton(
+                      child: const Text('Home'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      },
+                    ),
                       _buildNavTab('Rutinas'),
-                      _buildNavTab('Consejos'),
-                      _buildNavTab('Servicios'),
-                      _buildNavTab('Trofeos'),
+                      TextButton(
+                      child: const Text('Consejos'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Consejos()),
+                        );
+                      },
+                    ),
+                      TextButton(
+                      child: const Text('Servicios'),
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => ServiciosScreen()),
+                        );
+                      },
+                    ),
+                      // _buildNavTab('Trofeos'),
                     ],
                   ),
                 ],
@@ -119,6 +151,57 @@ class TrofeosActividadScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
 
+                    // --- Card de Trofeos de Alimentación (ahora va primero) ---
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                      child: Card(
+                        elevation: 5,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(12),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => TrofeosAlimentacionScreen()),
+                            );
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              children: [
+                                Icon(Icons.restaurant, color: Colors.black, size: 40), // Icono negro
+                                const SizedBox(width: 16),
+                                Expanded(
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: const [
+                                      Text(
+                                        'Trofeos de Alimentación',
+                                        style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                        ),
+                                      ),
+                                      SizedBox(height: 4),
+                                      Text(
+                                        '¡Descubre los logros relacionados con la alimentación y nutrición de tu mascota!',
+                                        style: TextStyle(color: Colors.grey),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Icon(Icons.arrow_forward_ios, color: Colors.black),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+
+                    // --- Card de Logros de Actividad Física ---
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Card(
@@ -205,6 +288,37 @@ class TrofeosActividadScreen extends StatelessWidget {
                   ],
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: Container(
+        color: Colors.black87,
+        padding: const EdgeInsets.symmetric(vertical: 12),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, color: Colors.white, size: 30),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()),
+                );
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.pets, color: Colors.white, size: 30),
+              onPressed: () {
+                // Aquí puedes navegar a la pantalla de rutinas o perfil si la tienes
+                // Navigator.push(context, MaterialPageRoute(builder: (context) => RutinasScreen()));
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.emoji_events, color: Colors.white, size: 30),
+              onPressed: () {
+                // Ya estás en la pantalla de trofeos, puedes dejarlo vacío o mostrar un mensaje
+              },
             ),
           ],
         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:patania_app/home_pr.dart';
+import 'package:patania_app/servicios_screen.dart';
+
 
 class Consejos extends StatefulWidget {
   const Consejos({super.key});
@@ -36,7 +38,14 @@ class _ConsejosState extends State<Consejos> {
                     ),
                   _navTab('Rutinas'),
                   _navTab('Consejos', isSelected: true),
-                  _navTab('Servicios'),
+                  TextButton(
+                        child: Text('Servicios'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ServiciosScreen()));
+                    },
+                  ),
                 ],
               ),
             ),
