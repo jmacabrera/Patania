@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:patania_app/home_pr.dart';
-import 'package:flutter/material.dart';
-import 'package:patania_app/home_pr.dart';
-import 'package:patania_app/consejos.dart';
-import 'package:patania_app/servicios_screen.dart';
-import 'package:patania_app/trofeos_alimentacion.dart';
+import 'package:patania_app/home_pr.dart'; // Importa HomeScreen para la navegación.
+import 'package:patania_app/consejos.dart'; // Importa Consejos para la navegación.
+import 'package:patania_app/servicios_screen.dart'; // Importa ServiciosScreen para la navegación.
+import 'package:patania_app/trofeos_alimentacion.dart'; // Importa TrofeosAlimentacionScreen para la navegación.
 
-
+import 'package:patania_app/services/database_service.dart'; // Importa tu servicio de base de datos.
 
 class TrofeosActividadScreen extends StatelessWidget {
-  const TrofeosActividadScreen({super.key});
+  // SE QUITO 'const' de aquí en una corrección anterior.
+  TrofeosActividadScreen({super.key});
 
-  Widget _buildTrophyCard(IconData icon, String title, String date) {
+  // Instancia de tu servicio de base de datos.
+  final DatabaseService _databaseService = DatabaseService();
+
+  // Widget para construir una tarjeta de trofeo.
+  Widget _buildTrophyCard(IconData icon, String title, String description) {
     return Card(
       elevation: 3,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
@@ -29,10 +32,11 @@ class TrofeosActividadScreen extends StatelessWidget {
                 children: [
                   Text(title,
                       style: const TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 16)),
+                          fontWeight: FontWeight.bold,
+                          fontSize: 16,
+                          color: Colors.black)),
                   const SizedBox(height: 4),
-                  Text(date,
-                      style: const TextStyle(color: Colors.grey)),
+                  Text(description, style: const TextStyle(color: Colors.grey)),
                 ],
               ),
             ),
@@ -42,13 +46,54 @@ class TrofeosActividadScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildNavTab(String label) {
-    return Text(
-      label,
-      style: const TextStyle(
-        fontWeight: FontWeight.bold,
-        decoration: TextDecoration.none,
-        color: Colors.black,
+  // Widget para construir una pestaña de navegación superior.
+  // RECIBE 'BuildContext context' como argumento.
+  Widget _buildNavTab(String label, BuildContext context,
+      {VoidCallback? onPressed}) {
+    return GestureDetector(
+      onTap: onPressed ??
+          () {
+            // Lógica de navegación.
+            if (label == 'Home') {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          HomeScreen())); // SE QUITO 'const' AQUI
+            } else if (label == 'Rutinas') {
+              // TODO: Navegar a Rutinas.
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                    content: Text('Funcionalidad de Rutinas no implementada.')),
+              );
+            } else if (label == 'Consejos') {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          Consejos())); // SE QUITO 'const' AQUI
+            } else if (label == 'Servicios') {
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          ServiciosScreen())); // SE QUITO 'const' AQUI
+            } else if (label == 'Trofeos') {
+              // Navega a esta misma pantalla.
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          TrofeosActividadScreen())); // SE QUITO 'const' AQUI
+            }
+          },
+      child: Text(
+        label,
+        style: const TextStyle(
+          fontWeight: FontWeight.bold,
+          decoration: TextDecoration.none,
+          color: Colors.black,
+        ),
       ),
     );
   }
@@ -62,7 +107,8 @@ class TrofeosActividadScreen extends StatelessWidget {
           children: [
             Container(
               color: const Color(0xFFF3EAEA),
-              padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
               child: Column(
                 children: [
                   const Text(
@@ -77,35 +123,29 @@ class TrofeosActividadScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                     TextButton(
-                      child: const Text('Home'),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomeScreen()),
-                        );
-                      },
-                    ),
-                      _buildNavTab('Rutinas'),
-                      TextButton(
-                      child: const Text('Consejos'),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Consejos()),
-                        );
-                      },
-                    ),
-                      TextButton(
-                      child: const Text('Servicios'),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ServiciosScreen()),
-                        );
-                      },
-                    ),
-                      // _buildNavTab('Trofeos'),
+                      // SE PASA 'context' Y SE QUITA 'const' DE LAS LLAMADAS A CONSTRUCTORES
+                      _buildNavTab('Home', context,
+                          onPressed: () => Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => HomeScreen()))),
+                      _buildNavTab('Rutinas', context),
+                      _buildNavTab('Consejos', context,
+                          onPressed: () => Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Consejos()))),
+                      _buildNavTab('Servicios', context,
+                          onPressed: () => Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ServiciosScreen()))),
+                      _buildNavTab('Trofeos', context,
+                          onPressed: () => Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      TrofeosActividadScreen()))),
                     ],
                   ),
                 ],
@@ -115,6 +155,7 @@ class TrofeosActividadScreen extends StatelessWidget {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    // Perfil de la mascota (estático aquí, puedes hacerlo dinámico si lo necesitas).
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Card(
@@ -128,7 +169,8 @@ class TrofeosActividadScreen extends StatelessWidget {
                               const CircleAvatar(
                                 radius: 35,
                                 backgroundColor: Colors.grey,
-                                child: Icon(Icons.pets, size: 35, color: Colors.white),
+                                child: Icon(Icons.pets,
+                                    size: 35, color: Colors.white),
                               ),
                               const SizedBox(width: 16),
                               Column(
@@ -136,7 +178,9 @@ class TrofeosActividadScreen extends StatelessWidget {
                                 children: const [
                                   Text('Tommy',
                                       style: TextStyle(
-                                          fontWeight: FontWeight.bold, fontSize: 18)),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.black)),
                                   Text('Golden retriever',
                                       style: TextStyle(color: Colors.grey)),
                                   SizedBox(height: 4),
@@ -151,57 +195,7 @@ class TrofeosActividadScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 16.0),
 
-                    // --- Card de Trofeos de Alimentación (ahora va primero) ---
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(12),
-                          onTap: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => TrofeosAlimentacionScreen()),
-                            );
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              children: [
-                                Icon(Icons.restaurant, color: Colors.black, size: 40), // Icono negro
-                                const SizedBox(width: 16),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: const [
-                                      Text(
-                                        'Trofeos de Alimentación',
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                        ),
-                                      ),
-                                      SizedBox(height: 4),
-                                      Text(
-                                        '¡Descubre los logros relacionados con la alimentación y nutrición de tu mascota!',
-                                        style: TextStyle(color: Colors.grey),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Icon(Icons.arrow_forward_ios, color: Colors.black),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 16.0),
-
-                    // --- Card de Logros de Actividad Física ---
+                    // --- Sección de Logros de Actividad Física (¡Datos desde Firestore!) ---
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Card(
@@ -215,14 +209,71 @@ class TrofeosActividadScreen extends StatelessWidget {
                             children: [
                               const Text('Logros de Actividad Física',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 18)),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.black)),
                               const SizedBox(height: 16),
-                              _buildTrophyCard(Icons.directions_walk, 'Paseo Diario',
-                                  'Registrar al menos un paseo diario durante una semana.'),
-                              _buildTrophyCard(Icons.fitness_center, 'Semana Activa',
-                                  'Cumplir la cuota de actividad semanal.'),
-                              _buildTrophyCard(Icons.nature_people, 'Aventura al aire libre',
-                                  'Registrar un paseo en un lugar nuevo.'),
+                              // StreamBuilder para obtener las definiciones de trofeos.
+                              StreamBuilder<List<TrophyDefinition>>(
+                                stream: _databaseService
+                                    .streamTrophyDefinitions(), // Obtiene el stream de definiciones de trofeos.
+                                builder: (context, snapshot) {
+                                  // Manejo de errores.
+                                  if (snapshot.hasError) {
+                                    debugPrint(
+                                        'Error en StreamBuilder de trofeos de actividad: ${snapshot.error}');
+                                    return Center(
+                                        child: Text(
+                                            'Error al cargar logros: ${snapshot.error}',
+                                            style: const TextStyle(
+                                                color: Colors.black)));
+                                  }
+                                  // Muestra cargador.
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const CircularProgressIndicator();
+                                  }
+                                  // Muestra mensaje si no hay definiciones de trofeos.
+                                  if (!snapshot.hasData ||
+                                      snapshot.data!.isEmpty) {
+                                    return const Text(
+                                        'No hay logros de actividad definidos.',
+                                        style: const TextStyle(
+                                            color: Colors.black));
+                                  }
+
+                                  // Filtra los trofeos por categoría.
+                                  // Aquí se muestran los trofeos de 'Actividad Física' o 'Salud'.
+                                  final activityTrophies = snapshot.data!
+                                      .where((trophy) =>
+                                          trophy.category ==
+                                              'Actividad Física' ||
+                                          trophy.category == 'Salud')
+                                      .toList();
+
+                                  if (activityTrophies.isEmpty) {
+                                    return const Text(
+                                        'No hay logros de actividad definidos en esta categoría.',
+                                        style: const TextStyle(
+                                            color: Colors.black));
+                                  }
+
+                                  // Construye la lista de tarjetas de trofeos.
+                                  return Column(
+                                    children: activityTrophies
+                                        .map((trophy) => _buildTrophyCard(
+                                              // Convierte iconCodePoint (String) a IconData.
+                                              IconData(
+                                                  int.parse(
+                                                      trophy.iconCodePoint),
+                                                  fontFamily: 'MaterialIcons'),
+                                              trophy.title,
+                                              trophy.description,
+                                            ))
+                                        .toList(),
+                                  );
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -230,34 +281,7 @@ class TrofeosActividadScreen extends StatelessWidget {
                     ),
 
                     const SizedBox(height: 16.0),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                      child: Card(
-                        elevation: 5,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12)),
-                        child: Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const Text('Logros de Salud',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 18)),
-                              const SizedBox(height: 16),
-                              _buildTrophyCard(Icons.local_hospital, 'Veterinario al Día',
-                                  'Registrar una visita veterinaria.'),
-                              _buildTrophyCard(Icons.vaccines, 'Vacunas al Día',
-                                  'Mantener el calendario de vacunación completo.'),
-                              _buildTrophyCard(Icons.assignment, 'Chequeo Completo',
-                                  'Completar los campos de salud de la mascota.'),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-
-                    const SizedBox(height: 16.0),
+                    // --- Sección de Relación y Cariño (¡Datos desde Firestore!) ---
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Card(
@@ -271,14 +295,63 @@ class TrofeosActividadScreen extends StatelessWidget {
                             children: [
                               const Text('Relación y Cariño',
                                   style: TextStyle(
-                                      fontWeight: FontWeight.bold, fontSize: 18)),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18,
+                                      color: Colors.black)),
                               const SizedBox(height: 16),
-                              _buildTrophyCard(Icons.cake, 'Día Especial',
-                                  'Registrar el cumpleaños o adopción.'),
-                              _buildTrophyCard(Icons.favorite, 'Tiempo de Calidad',
-                                  'Pasar al menos 30 minutos de juego o interacción.'),
-                              _buildTrophyCard(Icons.loyalty, 'Amigo Fiel',
-                                  'Cuidar a la mascota más de 6 meses sin interrupciones.'),
+                              StreamBuilder<List<TrophyDefinition>>(
+                                stream:
+                                    _databaseService.streamTrophyDefinitions(),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasError) {
+                                    debugPrint(
+                                        'Error en StreamBuilder de trofeos de cariño: ${snapshot.error}');
+                                    return Center(
+                                        child: Text(
+                                            'Error al cargar logros: ${snapshot.error}',
+                                            style: const TextStyle(
+                                                color: Colors.black)));
+                                  }
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.waiting) {
+                                    return const CircularProgressIndicator();
+                                  }
+                                  if (!snapshot.hasData ||
+                                      snapshot.data!.isEmpty) {
+                                    return const Text(
+                                        'No hay logros de relación definidos.',
+                                        style: const TextStyle(
+                                            color: Colors.black));
+                                  }
+
+                                  // Filtra los trofeos por categoría "Relación y Cariño".
+                                  final relationshipTrophies = snapshot.data!
+                                      .where((trophy) =>
+                                          trophy.category ==
+                                          'Relación y Cariño')
+                                      .toList();
+
+                                  if (relationshipTrophies.isEmpty) {
+                                    return const Text(
+                                        'No hay logros de relación definidos en esta categoría.',
+                                        style: const TextStyle(
+                                            color: Colors.black));
+                                  }
+
+                                  return Column(
+                                    children: relationshipTrophies
+                                        .map((trophy) => _buildTrophyCard(
+                                              IconData(
+                                                  int.parse(
+                                                      trophy.iconCodePoint),
+                                                  fontFamily: 'MaterialIcons'),
+                                              trophy.title,
+                                              trophy.description,
+                                            ))
+                                        .toList(),
+                                  );
+                                },
+                              ),
                             ],
                           ),
                         ),
@@ -288,37 +361,6 @@ class TrofeosActividadScreen extends StatelessWidget {
                   ],
                 ),
               ),
-            ),
-          ],
-        ),
-      ),
-      bottomNavigationBar: Container(
-        color: Colors.black87,
-        padding: const EdgeInsets.symmetric(vertical: 12),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            IconButton(
-              icon: const Icon(Icons.home, color: Colors.white, size: 30),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => HomeScreen()),
-                );
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.pets, color: Colors.white, size: 30),
-              onPressed: () {
-                // Aquí puedes navegar a la pantalla de rutinas o perfil si la tienes
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => RutinasScreen()));
-              },
-            ),
-            IconButton(
-              icon: const Icon(Icons.emoji_events, color: Colors.white, size: 30),
-              onPressed: () {
-                // Ya estás en la pantalla de trofeos, puedes dejarlo vacío o mostrar un mensaje
-              },
             ),
           ],
         ),
