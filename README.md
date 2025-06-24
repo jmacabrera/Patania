@@ -1,16 +1,43 @@
-# myapp
+# Patania - Aplicación Móvil para el Cuidado de Mascotas
 
-A new Flutter project.
 
-## Getting Started
+## Descripción
 
-This project is a starting point for a Flutter application.
+Patania es una aplicación móvil multiplataforma diseñada para asistir a los dueños de mascotas en su cuidado diario, combinando herramientas funcionales con elementos de gamificación en un universo mágico y amigable.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Objetivo General
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Desarrollar una aplicación móvil inteligente, amigable y fantasiosa que brinde asistencia personalizada para el cuidado de mascotas, permitiendo llevar el control de rutinas, peso, alimentación y paseos, incentivando al usuario mediante recompensas.
+
+
+## Funcionalidades
+
+- Registro de mascotas con perfil completo (foto, raza, edad, historial de salud).
+- Rutinas personalizadas con recordatorios automáticos.
+- Seguimiento gráfico del peso mensual.
+- Sistema de recompensas.
+- Base de datos de razas y consejos personalizados.
+- Múltiples perfiles de mascotas.
+- Contactos de emergencia geolocalizados.
+
+
+## Descarga y Repositorio
+
+https://github.com/jmacabrera/Patania/releases/tag/Primera_Entrega
+
+GitHub - Patania - https://github.com/jmacabrera/Patania.git
+
+## Equipo de Desarrollo
+
+| Nombre | Correo |
+|--------|--------|
+| Jhon Marvel Cabrera Muñoz | jmacabrera@poligran.edu.co |
+| Paula Milena Cagua Gutiérrez | pcagua@poligran.edu.co |
+| Cristian David Cantillo Nieves | ccantillo@poligran.edu.co |
+| Juan David Cepeda López | jdacepeda@poligran.edu.co |
+| Henry Andrés Castañeda Acosta | hcastaneda@poligran.edu.co |
+
+---
+
+🧡 Gracias por tu interés en Patania. ¡Juntos podemos mejorar la vida de nuestras mascotas con tecnología y diversión!
