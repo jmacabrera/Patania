@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // Importa tus pantallas de navegación:
 import 'package:patania_app/consejos.dart';
+import 'package:patania_app/rutinas.dart';
 import 'package:patania_app/servicios_screen.dart';
 import 'package:patania_app/trofeos_actividad.dart';
 import 'package:patania_app/trofeos_alimentacion.dart';
@@ -240,7 +241,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _buildNavTab('Home', 0),
-                      _buildNavTab('Rutinas', 1),
+                      _buildNavTab('Rutinas', 1, onPressed: () {
+  Navigator.push(
+    context,
+    MaterialPageRoute(builder: (context) => RutinasScream()),
+  );
+}),
                       _buildNavTab('Consejos', 2),
                       _buildNavTab('Servicios', 3),
                     ],
